@@ -25,7 +25,7 @@ const MapRender = (props) => {
   const [newPostSuccess, setNewPostSuccess] = useState(false);
   const [lastRubbishType, setLastRubbishType] = useState(null);
 
-  const [serverToggle, setServerToggle] = useState('test.json')
+  const [serverToggle, setServerToggle] = useState('locs.json')
 
   
 
