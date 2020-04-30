@@ -1,0 +1,62 @@
+.mapContainer {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.marker {
+  /* background-image: url('../../assets/button.png'); */
+  background-size: cover;
+  width: 4vw;
+  height: 4vw;
+  background: #0060ac;
+  border-radius: 50%;
+  cursor: pointer;
+  animation-duration: .5s;
+  animation-name: slidein;
+  animation-iteration-count: 3;
+  animation-direction: alternate;
+}
+
+@media  (min-width: 500px){
+  .marker {
+  width: 15px;
+  height: 15px;
+  }
+}
+
+
+@keyframes slidein {
+  from {
+    width: 15vw;
+    height: 15vw; 
+  }
+
+
+  to {
+    width: 3vw;
+    height: 3vw;
+  }
+
+
+
+
+}
+
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.mapboxgl-logo{
+  display: none !important;
+  z-index: -100; 
+}
+

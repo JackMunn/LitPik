@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Light Litter",
+      "properties": "Cans, Bottles, Paper",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.6419677734374996,
+          51.472401961193704
+        ]
+      }
+    },
+    {
+      "type": "Light Litter",
+      "properties": "Cans, Bottles, Paper",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.582229614257813,
+          51.50233153463367
+        ]
+      }
+    },
+    {
+      "type": "Medium Litter",
+      "properties": "Some commercial",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.591842651367187,
+          51.532241464325594
+        ]
+      }
+    },
+    {
+      "type": "test Litter",
+      "properties": "Fly tipping",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7010192871093746,
+          51.47753414052395
+        ]
+      }
+    }
+  ]
+}
