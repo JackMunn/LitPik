@@ -3,6 +3,9 @@ import MapRender from '../src/containers/MyLitterPicker/MapRender';
 import NavBar from '../src/containers/NavBar';
 import Dashboard from '../src/containers/Dashboard/Dashboard';
 import UserAccount from '../src/containers/UserAccount/UserAccount';
+import CreateAccount from '../src/containers/UserAccount/CreateAccount';
+import Logout from '../src/containers/Auth/Logout';
+
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 
@@ -18,10 +21,13 @@ const App = (props) => {
 
     return (
       <>
+      <Route path="/login" component={UserAccount}/>
       <Route path="/" component={NavBar}/>
-      <Route  path="/map" component={MapRender}/>
-      <Route  path="/dashboard" component={Dashboard}/>
-      <Route  path="/useraccount" component={UserAccount}/>
+      <Route path="/map" component={MapRender}/>
+      <Route path="/dashboard" component={Dashboard}/>
+      <Route path="/createaccount" component={CreateAccount}/>
+      <Route path ="/logout" component={Logout}/>
+
 
       </>
     )

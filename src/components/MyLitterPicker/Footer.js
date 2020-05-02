@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {connect} from 'react-redux'
 import styled from 'styled-components';
 import canImg from '../../assets/can.png';
 import bottleImg from '../../assets/bottle.png';
@@ -51,10 +52,16 @@ const FooterNav = (props) =>  {
 
     return (
       <Footer>
-        <Icons onClick={() => props.saveLitterLoc('can')} iconType="can"></Icons> 
-        <Icons onClick={() => props.saveLitterLoc('bottle')} iconType="bottle"></Icons> 
+        <Icons onClick={() => props.saveLitterLoc('can', props.token)} iconType="can"></Icons> 
+        <Icons onClick={() => props.saveLitterLoc('bottle', props.token)} iconType="bottle"></Icons> 
       </Footer>
             );
 }  
 
-export default FooterNav;
+const mapStateToProps = state => {
+  return {
+    token: state.authReducer.token,
+  }
+}
+
+export default connect(mapStateToProps)(FooterNav);

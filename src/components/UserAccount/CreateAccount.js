@@ -2,14 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Field, reduxForm, SubmissionError} from 'redux-form';
-import { NavLink } from 'react-router-dom';
-
 import {inputField} from '../UI/InputField';
-import Loader from '../UI/Loader';
 import * as actions from '../../store/actions/index';
 import SignUp from './SignUp';
-import {validateAndSubmit} from '../UI/Validation/LoginModal';
-
+import {validateAndSubmit} from '../UI/Validation/CreateAccount';
 
 
 
@@ -33,7 +29,7 @@ const LoginPanel = styled.div`
 
 const SubmitButton = styled.button`
   font-family: 'Hind', sans-serif;
-  background: ${props => props.loading ? '#f09869' : '#ef7a3b'};
+  background: #ef7a3b;
   border-radius: 18px;
   width: 100%;
   padding: 8px 30px;
@@ -48,59 +44,50 @@ const SubmitButton = styled.button`
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0); !important
 -webkit-tap-highlight-color: transparent;  
 
+`;
+
+const Title = styled.h1`
+    font-family: 'Hind', sans-serif;
+    color: #0060ac;
 
 `;
 
 
 
-
-let LoginModalFn = (props) => {
+let CreateAccountFn = (props) => {
 
   const { handleSubmit } = props;
 
-  // loader works fine, but is so quick on home internet to be pointless
-  let loader;
-  if(props.loading){
-    loader = (<div style={{display: 'block', position:'relative', width: '100%', height: '200px'}}><Loader/></div>);
-  }
-
-  let errorMessage;
-  if(props.firebaseError){
-    console.log(props.firebaseError.message);
-    errorMessage = props.firebaseError.message;
-  }
-  console.log('props.error',props.firebaseError)
-
   return (
-  <LoginPanel> 
+
+
+  <LoginPanel>  
+    <Title>Create Account</Title>
     <form onSubmit={handleSubmit(validateAndSubmit)}>
       <Field name="email" component={inputField} type="email" placeholder="email address" />
-        <Field name="password" component={inputField} type="password" placeholder="password" />
-        {loader}
-        {errorMessage}
-      <SubmitButton type="submit" loading={props.loading}>login</SubmitButton>
+      <Field name="password" component={inputField} type="password" placeholder="password" />
+  
+      <SubmitButton type="submit">create account</SubmitButton>
     </form>
-
-    <hr style={{borderTop: '.5px solid #dcdfe6', width: '60%', background: '#dcdfe6'}}/>
-    <SignUp/>
+  
   </LoginPanel>
   )
 }
 
+function submit(values, dispatch) {
+  //Can log the values to the console, but submitFormValues actionCreator does not appear to be dispatched.
+  console.log(values);
+  return dispatch(actions.auth(values));
+}
 
-LoginModalFn = reduxForm({
+
+
+CreateAccountFn = reduxForm({
   // a unique name for the form
   form: 'login',
   validateAndSubmit
 
-})(LoginModalFn)
-
-const mapStateToProps = state => {
-  return {
-    // loading: state.authReducer.loading,
-    firebaseError: state.authReducer.error,
-  }
-}
+})(CreateAccountFn)
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -108,4 +95,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModalFn);
+export default connect(null, mapDispatchToProps)(CreateAccountFn);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useState} from 'react';
 import Backdrop from '../UI/Backdrop';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -22,6 +22,8 @@ const Sidedraw = styled.div`
   dislay:block;
   outline: none;
   user-select: none;
+
+  transform: ${props => props.open ? 'translateY(-5%)' : 'translateY(-150%)'};
 
 
 
@@ -59,29 +61,37 @@ const StyledLink = styled(NavLink)`
     font-weight: bold;
     outline: none;
     border-right: 4px solid #ef7a3b;
-
-   
-
-  }
-
-
+  } 
 `;
 
-const sidedraw = (props) => {
+const SidedrawContainer = (props) => {
 
-  let opacity = '.40';
-  if(props.opacity){
-    opacity = props.opacity;
+
+  let authLayout;
+
+  if(props.isAuth){
+    authLayout = (
+    <>
+    <StyledLink to="/dashboard" onClick={props.toggleSidedraw}>dashboard</StyledLink> 
+    <StyledLink to="/map" onClick={props.toggleSidedraw}>my litter tracker</StyledLink>
+    <StyledLink to="/globalmap" onClick={props.toggleSidedraw}>global litter map</StyledLink>
+    <StyledLink to="/logout" onClick={props.toggleSidedraw}>logout</StyledLink>
+    </>
+    );
   }
+
 
   return (
     <>
-      <Backdrop show={props.open} opacity={opacity}/>
-      <Sidedraw style={{transform:props.open ? 'translateY(-1%)' :'translateY(-150%)'}}>
-        <StyledLink to="/dashboard" onClick={props.toggleSidedraw}>Dashboard</StyledLink> 
-        <StyledLink to="/map" onClick={props.toggleSidedraw}>My Litter Tracker</StyledLink>
-        <StyledLink to="/globalmap" onClick={props.toggleSidedraw}>Global Litter Map</StyledLink>
-        <StyledLink to="/useraccount" onClick={props.toggleSidedraw}>User Account</StyledLink>
+      <Backdrop show={props.open} changed={props.toggleSidedraw} opacity=".4"/>
+      <Sidedraw open={props.open} auth={props.isAuth}>
+        {props.isAuth ? null :
+          <>
+          <StyledLink to="/login" onClick={props.toggleSidedraw}>login</StyledLink>
+          <StyledLink to="/globalmap" onClick={props.toggleSidedraw}>global litter map</StyledLink>
+          </>
+          }
+        {authLayout}
 
       </Sidedraw>
     </>
@@ -92,6 +102,7 @@ const sidedraw = (props) => {
 const mapStateToProps = state => {
   return {
     open: state.navReducer.showSidedraw,
+    isAuth: state.authReducer.token !== null,
   }
 }
 
@@ -101,4 +112,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(sidedraw); 
+export default connect(mapStateToProps, mapDispatchToProps)(SidedrawContainer); 

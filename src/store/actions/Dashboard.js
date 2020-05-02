@@ -11,12 +11,12 @@ export const onCalculateDashboardStats = (cans, bottles) => {
   }
 }
 
-export const initCalcStats = () => {
+export const initCalcStats = (token) => {
   let tempCans = 0;
   let tempBottles =0;
 
   return dispatch => {
-    axios.get('https://litterapp-21386.firebaseio.com/locs.json').then(response => {
+    axios.get(`https://litterapp-21386.firebaseio.com/test.json?auth=${token}`).then(response => {
       for(let key in response.data){
 
         if(response.data[key].rubbishType === 'can') {

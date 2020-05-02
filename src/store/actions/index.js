@@ -11,5 +11,6 @@ export {
   } from './NavBar'
 
 export {
-  auth
+  auth,
+  logout
 } from './auth'

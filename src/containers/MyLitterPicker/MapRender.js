@@ -25,7 +25,7 @@ const MapRender = (props) => {
   const [newPostSuccess, setNewPostSuccess] = useState(false);
   const [lastRubbishType, setLastRubbishType] = useState(null);
 
-  const [serverToggle, setServerToggle] = useState('locs.json')
+  const [serverToggle, setServerToggle] = useState('test.json')
 
   
 
@@ -52,14 +52,16 @@ const MapRender = (props) => {
       // showAccuracyCircle: true,  
       }));
 
-    renderMarkers();
+      renderMarkers(props.token);
+    
     // setTimeout(() => setIsLoading(false), 5000)
   
   }, []);
 
 
-  const renderMarkers = (props) => {
-    axios.get(`https://litterapp-21386.firebaseio.com/${serverToggle}`).then(response => {
+  const renderMarkers = (token) => {
+    axios.get(`https://litterapp-21386.firebaseio.com/${serverToggle}?auth=${token}`)
+    .then(response => {
       for(let key in response.data){
            // create a HTML element for each feature
            var el = document.createElement('div');
@@ -72,10 +74,14 @@ const MapRender = (props) => {
              .addTo(map);
      }
      setIsLoading(false);
-     }).catch(error => {console.log('render new set of markers failed', error.message)});
+     }).catch(error => {
+       console.log('render new set of markers failed', error.message);
+       setIsLoading(false);
+
+      });
   }
 
-  const saveLitterLoc = (rubbishType) => {
+  const saveLitterLoc = (rubbishType, token) => {
     setIsLoading(true);
     props.onSessionAdd();
 
@@ -90,7 +96,7 @@ const MapRender = (props) => {
           date: new Date(),
         }
   
-        axios.post(`https://litterapp-21386.firebaseio.com/${serverToggle}`, littleLoc )
+        axios.post(`https://litterapp-21386.firebaseio.com/${serverToggle}?auth=${token}`, littleLoc )
           .then(response => {
             console.log('Succesful post to server.',response)
 
@@ -117,7 +123,6 @@ const MapRender = (props) => {
   }
 
   const toggleSuccessScreen = () => {
-    console.log('success screen fired')
     setNewPostSuccess(false);
   }
 
@@ -125,7 +130,7 @@ let loadScreen;
 if(isLoading){
   loadScreen = (
     <>
-      <Backdrop/>
+      <Backdrop show={true} opacity=".6"/>
       <Loader/>
     </>) ;
 }
@@ -134,7 +139,7 @@ let successScreen;
 if(newPostSuccess){
   successScreen = (
     <>
-    <Backdrop toggleSidedraw={toggleSuccessScreen}/>
+    <Backdrop show={true} opacity=".6" changed={toggleSuccessScreen}/>
     <SuccessModal rubbishType={lastRubbishType} toggleSuccessScreen={toggleSuccessScreen}/>
     </>
   );
@@ -161,6 +166,7 @@ const mapStateToProps = (state) => {
   return {   
     lng: state.mapReducer.lng,
     lat: state.mapReducer.lat,
+    token: state.authReducer.token,
 
   };
 }

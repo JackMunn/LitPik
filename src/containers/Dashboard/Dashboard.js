@@ -14,7 +14,7 @@ const DivWrapper = styled.div`
 
 const Dashboard = (props) => {
   useEffect (() => {
-    props.onCalculateDashboardStats()
+    props.onCalculateDashboardStats(props.token)
   }, []);
   
     return (
@@ -25,10 +25,16 @@ const Dashboard = (props) => {
 
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    onCalculateDashboardStats : () => dispatch(dashboardActions.initCalcStats()),
+    token: state.authReducer.token,
   }
 }
 
-export default connect(null, mapDispatchToProps)(Dashboard); 
+const mapDispatchToProps = dispatch => {
+  return {
+    onCalculateDashboardStats : (token) => dispatch(dashboardActions.initCalcStats(token)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard); 

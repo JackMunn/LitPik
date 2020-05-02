@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Hamburger from '../components/NavBar/Hamburger'
@@ -46,7 +46,7 @@ const NavBar = (props) => {
       <>
       <Bar>
        {/* <p>count: {props.totalRubbishCount}</p> */}
-       <Logo fontSize={'32px'} isWhite={true}/>
+       <Logo fontSize={'32px'} isWhite={true} paddingLeft={true}/>
         <Hamburger isWhite={true} isBlue={false}/>
 
       </Bar>
@@ -58,15 +58,17 @@ const NavBar = (props) => {
 
 // const mapStateToProps = state => {
 //   return {
-//     showSidedraw: state.navReducer.showSidedraw,
+//     isAthenticated: state.authReducer.token !== null,
+//     isOpen: state.navReducer.showSidedraw,
 //   }
 // }
 
 // const mapDispatchToProps = dispatch => {
 //   return {
-//     toggleSideDraw: () => dispatch(NavBarActions.toggleSidedraw()),
+//     toggle: () => dispatch(NavBarActions.toggleSidedraw()),
 //   }
 // }
 
 
+// export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
 export default NavBar;

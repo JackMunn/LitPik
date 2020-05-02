@@ -17,7 +17,9 @@ const BackdropDiv = styled.div`
 `;
 
 const backdrop = (props) => {
-  return props.showSidedraw ? <BackdropDiv onClick={props.toggleSidedraw} opacity={props.opacity}/> : null;
+
+  
+  return props.showSidedraw || props.show ? <BackdropDiv onClick={props.changed} opacity={props.opacity}/> : null;
 };
 
 const mapStateToProps = state => {
