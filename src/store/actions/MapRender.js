@@ -13,6 +13,10 @@ export const initUserLocation = () => {
   return dispatch => {
     navigator.geolocation.getCurrentPosition(PositionFound);
     function PositionFound(position) {
+      localStorage.setItem('lng',position.coords.longitude );
+      localStorage.setItem('lat',position.coords.latitude );
+
+
       dispatch(setLocation(position.coords.longitude,position.coords.latitude));
       console.log('[Action Store]');
     }

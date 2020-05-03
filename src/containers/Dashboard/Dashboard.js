@@ -15,7 +15,9 @@ const DivWrapper = styled.div`
 const Dashboard = (props) => {
   useEffect (() => {
     props.onCalculateDashboardStats(props.token)
-  }, []);
+  },[]);
+
+  
   
     return (
     <DivWrapper>
@@ -28,6 +30,7 @@ const Dashboard = (props) => {
 const mapStateToProps = state => {
   return {
     token: state.authReducer.token,
+    authLoading: state.authReducer.loading
   }
 }
 

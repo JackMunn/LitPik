@@ -30,11 +30,18 @@ const MapRender = (props) => {
   
 
   useEffect(() => {
+
+    let positionCoords = [props.lng, props.lat]
+
+    if(!props.lng && !props.lat){
+      positionCoords = [localStorage.getItem('lng'), localStorage.getItem('lat')];
+    }
+
      // creates the new map when the page loads
     map = new mapboxgl.Map({
       container: mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-      center: [props.lng, props.lat],
+      center: positionCoords,
       zoom: 15,
       attributionControl: false
       });
@@ -59,7 +66,14 @@ const MapRender = (props) => {
   }, []);
 
 
-  const renderMarkers = (token) => {
+  const renderMarkers = (tokenProp) => {
+
+    let  token = tokenProp;
+    if(!tokenProp){
+      token = localStorage.getItem('Token');
+    }
+  
+
     axios.get(`https://litterapp-21386.firebaseio.com/${serverToggle}?auth=${token}`)
     .then(response => {
       for(let key in response.data){
@@ -81,9 +95,15 @@ const MapRender = (props) => {
       });
   }
 
-  const saveLitterLoc = (rubbishType, token) => {
+  const saveLitterLoc = (rubbishType, tokenProp) => {
     setIsLoading(true);
     props.onSessionAdd();
+
+  let  token = tokenProp;
+  if(!tokenProp){
+    token = localStorage.getItem('Token');
+  }
+  
 
     navigator.geolocation.getCurrentPosition(PositionFound);
     function PositionFound(position) {
