@@ -6,16 +6,16 @@ import UserAccount from '../src/containers/UserAccount/UserAccount';
 import CreateAccount from '../src/containers/UserAccount/CreateAccount';
 import Logout from '../src/containers/Auth/Logout';
 
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import * as mapRenderActions from './store/actions/index';
+import * as actions from './store/actions/index';
 
 const App = (props) => {
    
   useEffect(() => {
-    console.log('[UseEffect in App.js]');
     props.onInitLocation();
+    props.onTryAutoLogin();
 
   }, [])
 
@@ -35,9 +35,10 @@ const App = (props) => {
 
 const matchDispatchToProps = (dispatch) => {
   return {
-    onInitLocation: () => dispatch(mapRenderActions.initUserLocation()),
+    onInitLocation: () => dispatch(actions.initUserLocation()),
+    onTryAutoLogin: () => dispatch(actions.authCheckState())
   }
 }
 
-export default connect(null ,matchDispatchToProps)(App); 
+export default withRouter(connect(null ,matchDispatchToProps)(App)); 
 

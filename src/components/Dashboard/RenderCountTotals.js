@@ -11,7 +11,7 @@ const RenderCountTotals = (props) => {
     </div>)
   }
 
-  if(!props.isLoading){
+  else {
     return (
       <div>
         <ul>

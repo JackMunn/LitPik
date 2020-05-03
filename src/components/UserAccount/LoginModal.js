@@ -97,7 +97,7 @@ LoginModalFn = reduxForm({
 
 const mapStateToProps = state => {
   return {
-    // loading: state.authReducer.loading,
+    loading: state.authReducer.loading,
     firebaseError: state.authReducer.error,
   }
 }

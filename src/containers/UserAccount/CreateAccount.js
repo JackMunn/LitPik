@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 import CreateAccountModal from '../../components/UserAccount/CreateAccount';
@@ -64,8 +65,15 @@ const MainDisplay = styled.div`
 
 
 const CreateAccount = (props) =>{
+
+  let redirectIfAuth;
+  if(props.isAuth){
+    redirectIfAuth = (<Redirect to="/dashboard"/>);
+  }
+
   return (
       <DivWrapper move={props.showSidedraw}>
+        {redirectIfAuth}
      <CreateAccountModal/>
      </DivWrapper>
   )
@@ -74,6 +82,7 @@ const CreateAccount = (props) =>{
 const mapStateToProps = state => {
   return {
     showSidedraw: state.navReducer.showSidedraw,
+    isAuth: state.authReducer.token !== null,
   }
 };
 

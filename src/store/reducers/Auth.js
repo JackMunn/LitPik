@@ -9,13 +9,16 @@ const initialState = {
 }
 
 const authStart = (state, action) => updateObject(state, {error: null, loading: true});
+
 const authSuccess = (state, action) => updateObject(state, { 
     token: action.idToken,
     userId: action.userId,
     error: null,
     loading: false,
  });
+
 const authFail = (state, action) => updateObject(state, {error: action.error, loading:false})
+
 const authLogout = (state,action) => updateObject(state, {token:null, userId:null});
 
 const authReducer = (state = initialState, action) => {
