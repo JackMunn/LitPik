@@ -25,7 +25,7 @@ const MapRender = (props) => {
   const [newPostSuccess, setNewPostSuccess] = useState(false);
   const [lastRubbishType, setLastRubbishType] = useState(null);
 
-  const [serverToggle, setServerToggle] = useState('test.json')
+  const [serverToggle, setServerToggle] = useState('locs.json')
 
   
 
@@ -59,22 +59,23 @@ const MapRender = (props) => {
       // showAccuracyCircle: true,  
       }));
 
-      renderMarkers(props.token);
+      renderMarkers(props.token, props.userId);
     
     // setTimeout(() => setIsLoading(false), 5000)
   
   }, []);
 
 
-  const renderMarkers = (tokenProp) => {
+  const renderMarkers = (tokenProp, userId) => {
 
     let  token = tokenProp;
     if(!tokenProp){
       token = localStorage.getItem('Token');
     }
   
+    const queryParams = `auth=${token}&orderBy="userId"&equalTo="${userId}"`;
 
-    axios.get(`https://litterapp-21386.firebaseio.com/${serverToggle}?auth=${token}`)
+    axios.get(`https://litterapp-21386.firebaseio.com/${serverToggle}?${queryParams}`)
     .then(response => {
       for(let key in response.data){
            // create a HTML element for each feature
@@ -114,6 +115,8 @@ const MapRender = (props) => {
           longitude: position.coords.longitude,
           rubbishType: rubbishType,
           date: new Date(),
+          userId: props.userId
+
         }
   
         axios.post(`https://litterapp-21386.firebaseio.com/${serverToggle}?auth=${token}`, littleLoc )
@@ -187,6 +190,7 @@ const mapStateToProps = (state) => {
     lng: state.mapReducer.lng,
     lat: state.mapReducer.lat,
     token: state.authReducer.token,
+    userId: state.authReducer.userId
 
   };
 }

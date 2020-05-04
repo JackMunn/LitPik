@@ -14,10 +14,10 @@ const DivWrapper = styled.div`
 
 const Dashboard = (props) => {
   useEffect (() => {
-    props.onCalculateDashboardStats(props.token)
+    props.onCalculateDashboardStats(props.token, props.userId)
   },[]);
 
-  
+
   
     return (
     <DivWrapper>
@@ -30,13 +30,14 @@ const Dashboard = (props) => {
 const mapStateToProps = state => {
   return {
     token: state.authReducer.token,
-    authLoading: state.authReducer.loading
+    authLoading: state.authReducer.loading,
+    userId: state.authReducer.userId
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCalculateDashboardStats : (token) => dispatch(dashboardActions.initCalcStats(token)),
+    onCalculateDashboardStats : (token, userId) => dispatch(dashboardActions.initCalcStats(token, userId)),
   }
 }
 

@@ -11,7 +11,7 @@ export const onCalculateDashboardStats = (cans, bottles) => {
   }
 }
 
-export const initCalcStats = (tokenProp) => {
+export const initCalcStats = (tokenProp, userId) => {
   let tempCans = 0;
   let tempBottles =0;
   
@@ -19,10 +19,13 @@ export const initCalcStats = (tokenProp) => {
   if(!tokenProp){
     token = localStorage.getItem('Token');
   }
+
+  const queryParams = `auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+
   
 
   return dispatch => {
-    axios.get(`https://litterapp-21386.firebaseio.com/test.json?auth=${token}`).then(response => {
+    axios.get(`https://litterapp-21386.firebaseio.com/test.json?${queryParams}`).then(response => {
       for(let key in response.data){
 
         if(response.data[key].rubbishType === 'can') {

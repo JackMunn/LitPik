@@ -6,7 +6,7 @@ import UserAccount from '../src/containers/UserAccount/UserAccount';
 import CreateAccount from '../src/containers/UserAccount/CreateAccount';
 import Logout from '../src/containers/Auth/Logout';
 
-import { Route, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import * as actions from './store/actions/index';
@@ -19,26 +19,49 @@ const App = (props) => {
 
   }, [])
 
-    return (
+  let routes = (
+    <>
+    <Route path="/login" component={UserAccount}/>
+    <Route path="/" component={NavBar}/>
+    <Route path="/createaccount" component={CreateAccount}/>
+    <Route path="/dashboard" component={UserAccount}/>
+    <Route path="/map" component={UserAccount}/>
+
+
+    </>
+  );
+  if(props.isAuthenticated){
+    routes = (
       <>
-      <Route path="/login" component={UserAccount}/>
       <Route path="/" component={NavBar}/>
       <Route path="/map" component={MapRender}/>
       <Route path="/dashboard" component={Dashboard}/>
-      <Route path="/createaccount" component={CreateAccount}/>
       <Route path ="/logout" component={Logout}/>
+      <Redirect to ="/dashboard"/>
 
+      </>
+    );
+  }
 
+    return (
+      <>
+      {routes}
       </>
     )
 };
 
-const matchDispatchToProps = (dispatch) => {
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.authReducer.token !== null,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
   return {
     onInitLocation: () => dispatch(actions.initUserLocation()),
     onTryAutoLogin: () => dispatch(actions.authCheckState())
   }
 }
 
-export default withRouter(connect(null ,matchDispatchToProps)(App)); 
+export default withRouter(connect(mapStateToProps ,mapDispatchToProps)(App)); 
 
