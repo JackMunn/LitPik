@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import RenderCountTotals from '../../components/Dashboard/RenderCountTotals';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as dashboardActions from '../../store/actions/index'
 
 const DivWrapper = styled.div`
@@ -17,7 +18,9 @@ const Dashboard = (props) => {
     props.onCalculateDashboardStats(props.token, props.userId)
   },[]);
 
-
+  if(!props.isAuthenticated){
+    return <Redirect to="/login"/>;
+  }
   
     return (
     <DivWrapper>
@@ -31,7 +34,8 @@ const mapStateToProps = state => {
   return {
     token: state.authReducer.token,
     authLoading: state.authReducer.loading,
-    userId: state.authReducer.userId
+    userId: state.authReducer.userId,
+    isAuthenticated: state.authReducer.token !== null,
   }
 }
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import mapboxgl from 'mapbox-gl';
 import './site.css';
@@ -16,6 +16,9 @@ import * as mapRenderActions from '../../store/actions/index';
 
   
 const MapRender = (props) => {
+
+
+
   mapboxgl.accessToken = 'pk.eyJ1IjoiamFja211bm4iLCJhIjoiY2s4ZGVlaXdvMHYzajNqbHZlZ3F4cnIxNyJ9.qVRzBiJqtLPl6GuXYrCJLQ';
 
  let mapContainer;
@@ -30,6 +33,8 @@ const MapRender = (props) => {
   
 
   useEffect(() => {
+
+    
 
     let positionCoords = [props.lng, props.lat]
 
@@ -168,11 +173,16 @@ if(newPostSuccess){
   );
 }
 
+let authRedirect;
+if(!props.isAuthenticated){
+  authRedirect = <Redirect to="/login"/>;
+}
 
 
     return (
       <>
         <div ref={el => mapContainer = el} className="mapContainer">
+        {authRedirect}
         {loadScreen}  
         {successScreen}    
         <Route exact path="/map" component={()=> <Footer saveLitterLoc={saveLitterLoc}/>}/> 
@@ -190,7 +200,8 @@ const mapStateToProps = (state) => {
     lng: state.mapReducer.lng,
     lat: state.mapReducer.lat,
     token: state.authReducer.token,
-    userId: state.authReducer.userId
+    userId: state.authReducer.userId,
+    isAuthenticated: state.authReducer.token !== null,
 
   };
 }

@@ -24,8 +24,8 @@ const App = (props) => {
     <Route path="/login" component={UserAccount}/>
     <Route path="/" component={NavBar}/>
     <Route path="/createaccount" component={CreateAccount}/>
-    <Route path="/dashboard" component={UserAccount}/>
-    <Route path="/map" component={UserAccount}/>
+    <Route path="/dashboard" component={Dashboard}/>
+    <Route path="/map" component={MapRender}/>
 
 
     </>
