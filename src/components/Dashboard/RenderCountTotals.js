@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Loader from '../UI/Loader';
 
 
@@ -27,14 +26,4 @@ const RenderCountTotals = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    bottles: state.dashboardReducer.bottles,
-    cans: state.dashboardReducer.cans,
-    isLoading: state.dashboardReducer.isLoading,
-  }
-}
-
-
-
-export default connect(mapStateToProps)(RenderCountTotals)
+export default RenderCountTotals;

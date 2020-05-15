@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
   switch(action.type){
    
     case actionTypes.SET_LOCATION : 
-     console.log('[Reducer] Save Loc fired');
       return  {
         ...state,
         lng: action.lng,

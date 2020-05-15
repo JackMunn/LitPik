@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import RenderCountTotals from '../../components/Dashboard/RenderCountTotals';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -9,22 +9,29 @@ const DivWrapper = styled.div`
   top: 10%;
   left: 0;
   width: 100%;
+  height: 90%;
   position: absolute;
+  transition: all .5s ease-in-out;
+  transform:${props => props.shift ? 'translateY(35%)' : 'translateY(0%)'};
+  color: white;
+
   
 `;
 
 const Dashboard = (props) => {
-  useEffect (() => {
-    props.onCalculateDashboardStats(props.token, props.userId)
-  },[]);
 
-  if(!props.isAuthenticated){
+  const {token, dashboardLoading, userId, isAuthenticated, cans, bottles} = props;
+
+    props.onCalculateDashboardStats(token,userId)
+
+  if(!isAuthenticated){
     return <Redirect to="/login"/>;
   }
   
     return (
-    <DivWrapper>
-    <RenderCountTotals/>
+    <DivWrapper shift={props.showSidedraw}>
+      <h1>Dashboard</h1>
+    <RenderCountTotals isLoading={dashboardLoading} cans={cans} bottles={bottles}/>
     </DivWrapper>
     );
 
@@ -33,9 +40,17 @@ const Dashboard = (props) => {
 const mapStateToProps = state => {
   return {
     token: state.authReducer.token,
-    authLoading: state.authReducer.loading,
+    dashboardLoading: state.dashboardReducer.isLoading,
+
     userId: state.authReducer.userId,
     isAuthenticated: state.authReducer.token !== null,
+
+    cans: state.dashboardReducer.cans,
+    bottles: state.dashboardReducer.bottles,
+
+    showSidedraw: state.navReducer.showSidedraw,
+
+
   }
 }
 

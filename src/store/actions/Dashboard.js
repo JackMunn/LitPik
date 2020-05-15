@@ -12,6 +12,7 @@ export const onCalculateDashboardStats = (cans, bottles) => {
 }
 
 export const initCalcStats = (tokenProp, userId) => {
+  console.log('initCalcStats')
   let tempCans = 0;
   let tempBottles =0;
   

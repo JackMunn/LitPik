@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
-import Backdrop from '../UI/Backdrop';
+import React from 'react';
+import Backdrop from '../../UI/Backdrop';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as navBarActions from '../../store/actions/index'
 
-const Sidedraw = styled.div`
+const SidedrawPanel = styled.div`
 
   position: fixed;
   width: 100%;
@@ -23,11 +21,12 @@ const Sidedraw = styled.div`
   outline: none;
   user-select: none;
 
-  transform: ${props => props.open ? 'translateY(-5%)' : 'translateY(-150%)'};
+  transform: ${props => props.show ? 'translateY(-5%)' : 'translateY(-150%)'};
 
 
 
 `;
+SidedrawPanel.displayName = 'SidedrawPanel';
 
 const StyledLink = styled(NavLink)`
   font-family: 'Hind', sans-serif;
@@ -64,7 +63,7 @@ const StyledLink = styled(NavLink)`
   } 
 `;
 
-const SidedrawContainer = (props) => {
+export const Sidedraw = (props) => {
 
 
   let authLayout;
@@ -83,8 +82,8 @@ const SidedrawContainer = (props) => {
 
   return (
     <>
-      <Backdrop show={props.open} changed={props.toggleSidedraw} opacity=".4"/>
-      <Sidedraw open={props.open} auth={props.isAuth}>
+      <Backdrop show={props.open} changed={props.toggleSidedraw} opacity={props.opacity ? props.opacity : ".4"}/>
+      <SidedrawPanel show={props.open} auth={props.isAuth}>
         {props.isAuth ? null :
           <>
           <StyledLink to="/login" onClick={props.toggleSidedraw}>login</StyledLink>
@@ -93,23 +92,11 @@ const SidedrawContainer = (props) => {
           }
         {authLayout}
 
-      </Sidedraw>
+      </SidedrawPanel>
     </>
 
     );
 }
 
-const mapStateToProps = state => {
-  return {
-    open: state.navReducer.showSidedraw,
-    isAuth: state.authReducer.token !== null,
-  }
-}
+export default Sidedraw;
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleSidedraw : () => dispatch(navBarActions.toggleSidedraw())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SidedrawContainer); 

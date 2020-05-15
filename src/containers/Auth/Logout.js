@@ -7,9 +7,11 @@ const Logout = (props) => {
 
     useEffect(() => {
         props.onLogout();
-    }, [])
 
+
+    },[props])
     return (<Redirect to="/login"/>)
+
 };
 
 const mapDispatchToProps = dispatch => {

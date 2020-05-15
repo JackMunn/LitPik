@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { Field, reduxForm, SubmissionError} from 'redux-form';
-import { NavLink } from 'react-router-dom';
+import { Field, reduxForm} from 'redux-form';
 
-import {inputField} from '../UI/InputField';
-import Loader from '../UI/Loader';
-import * as actions from '../../store/actions/index';
-import SignUp from './SignUp';
-import {validateAndSubmit} from '../UI/Validation/LoginModal';
+import {inputField} from '../../UI/InputField';
+import Loader from '../../UI/Loader';
+import * as actions from '../../../store/actions/index';
+import SignUp from '../SignUp';
+import {validateAndSubmit} from '../../UI/Validation/LoginModal';
 
 
 
@@ -29,11 +27,12 @@ const LoginPanel = styled.div`
   border-radius:16px;
   margin: 0 auto;
 `;
+LoginPanel.displayName = 'LoginPanel';
 
 
 const SubmitButton = styled.button`
   font-family: 'Hind', sans-serif;
-  background: ${props => props.loading ? '#f09869' : '#ef7a3b'};
+  background: #ef7a3b;
   border-radius: 18px;
   width: 100%;
   padding: 8px 30px;
@@ -66,10 +65,8 @@ let LoginModalFn = (props) => {
 
   let errorMessage;
   if(props.firebaseError){
-    console.log(props.firebaseError.message);
     errorMessage = props.firebaseError.message;
   }
-  console.log('props.error',props.firebaseError)
 
   return (
   <LoginPanel> 
@@ -78,7 +75,7 @@ let LoginModalFn = (props) => {
         <Field name="password" component={inputField} type="password" placeholder="password" />
         {loader}
         {errorMessage}
-      <SubmitButton type="submit" loading={props.loading}>login</SubmitButton>
+      <SubmitButton type="submit">login</SubmitButton>
     </form>
 
     <hr style={{borderTop: '.5px solid #dcdfe6', width: '60%', background: '#dcdfe6'}}/>
@@ -95,17 +92,6 @@ LoginModalFn = reduxForm({
 
 })(LoginModalFn)
 
-const mapStateToProps = state => {
-  return {
-    loading: state.authReducer.loading,
-    firebaseError: state.authReducer.error,
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password) => dispatch(actions.auth(email,password)),
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModalFn);
+export default LoginModalFn;

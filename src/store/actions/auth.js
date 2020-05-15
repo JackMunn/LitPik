@@ -54,7 +54,7 @@ export const auth = (email, password, method) => {
 
     let url  = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCaokXeHt_aprQR4Kryzf0nHcs6z0LOHnA';
 
-    if(method == 'signUp'){
+    if(method === 'signUp'){
        url  = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCaokXeHt_aprQR4Kryzf0nHcs6z0LOHnA';
 
     }
@@ -62,7 +62,6 @@ export const auth = (email, password, method) => {
     axios.post(url, authData )
       .then(
         response => {
-          console.log(response.data)
           // Code to ensure token persists in local storage, keeping user logged in despite page refresh
           const expirationDate = new Date(new Date().getTime() + (response.data.expiresIn * 1000));
           localStorage.setItem('Token', response.data.idToken); 

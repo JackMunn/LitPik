@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Hamburger from '../components/NavBar/Hamburger'
-import Sidedraw from '../components/NavBar/Sidedraw';
+import Sidedraw from '../components/NavBar/Sidedraw/Sidedraw';
 import Logo from '../components/NavBar/Logo';
-import * as NavBarActions from '../store/actions/index';
+import UserAccount from '../containers/UserAccount/UserAccount';
+import * as navBarActions from '../store/actions/index';
 
 const Bar = styled.div`
   height: 10%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   display: flex;
   
   top: 0;
@@ -26,6 +27,14 @@ const Bar = styled.div`
 
 `;
 
+const BelowTheBar = styled.div`
+  top: 10%;
+  height: 90%;
+  position: fixed;
+  background: #0060ac;
+  z-index: 0;
+  box-sizing: border-box;
+`;
 /* 
 
 font-family: 'Hind', sans-serif;
@@ -46,29 +55,29 @@ const NavBar = (props) => {
       <>
       <Bar>
        {/* <p>count: {props.totalRubbishCount}</p> */}
-       <Logo fontSize={'32px'} isWhite={true} paddingLeft={true}/>
-        <Hamburger isWhite={true} isBlue={false}/>
+       <Logo fontSize={'32px'} isWhite={true} paddingLeft={true} placeholder="litpik"/>
+        <Hamburger isWhite={true} isBlue={false} showSideDraw={props.open} toggleSidedraw={props.toggleSidedraw}/>
 
       </Bar>
-      <Sidedraw/>
+      <Sidedraw open={props.open} toggleSidedraw={props.toggleSidedraw} isAuth={props.isAuth}/>
       </>
 
     );
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     isAthenticated: state.authReducer.token !== null,
-//     isOpen: state.navReducer.showSidedraw,
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    open: state.navReducer.showSidedraw,
+    isAuth: state.authReducer.token !== null,
+  }
+}
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     toggle: () => dispatch(NavBarActions.toggleSidedraw()),
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleSidedraw : () => dispatch(navBarActions.toggleSidedraw())
+
+  }
+}
 
 
-// export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
-export default NavBar;
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

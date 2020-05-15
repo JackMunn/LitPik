@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
+import styled, {keyframes} from 'styled-components';
 import canImg from '../../assets/can.png';
 import bottleImg from '../../assets/bottle.png';
 
@@ -18,6 +17,24 @@ font-family: 'Hind', sans-serif;
 
 `;
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+
+  }
+  80% {
+    opacity: .8;
+    transform: translateY(-20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+
+  }
+
+`;
+
 const SuccessModal = styled.div`
   font-family: inherit;
   display: flex;
@@ -26,10 +43,12 @@ const SuccessModal = styled.div`
   align-items: center;
   justify-content: center;
   background: white;
-  border: 3px solid #ef7a3b;
+  border-top: 3px solid #ef7a3b;
   
   width: 100%;
   height: 100%;
+
+  animation: ${fadeIn} .5s ease-in;
 `;
 
 const H1 = styled.h1`
@@ -74,13 +93,12 @@ const RubbishImage = styled.div`
 `;
 
 const OnSuccess = (props) => {
-  console.log('success modal fired');
 
   let randomMessage = 'Nice one!';
   let randomNum = Math.floor(Math.random() *10);
   switch (randomNum){
     case 1 : randomMessage = 'Crikey, good job!'; break;
-    case 2 : randomMessage = 'Proved me wrong!'; break;
+    case 2 : randomMessage = 'Nice one!'; break;
     case 3 : randomMessage = 'Keep going!'; break;
     case 4 : randomMessage = 'The planet thanks you!'; break;
     case 5 : randomMessage = 'And another one bites the dust!'; break;
@@ -89,8 +107,8 @@ const OnSuccess = (props) => {
     case 8 : randomMessage = 'Prettttty, pretty good.'; break;
     case 9 : randomMessage = 'Do the happy dance!'; break;
     case 10 : randomMessage = 'Sweet, sweet recycling!'; break;
+    default: randomMessage ='Well done!'
   }
-  console.log(randomMessage, randomNum);
 
 
   return (
@@ -107,10 +125,4 @@ const OnSuccess = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    sessionTotal: state.mapReducer.sessionTotal
-  }
-}
-
-export default connect(mapStateToProps)(OnSuccess); 
+export default OnSuccess

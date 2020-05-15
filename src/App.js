@@ -5,11 +5,20 @@ import Dashboard from '../src/containers/Dashboard/Dashboard';
 import UserAccount from '../src/containers/UserAccount/UserAccount';
 import CreateAccount from '../src/containers/UserAccount/CreateAccount';
 import Logout from '../src/containers/Auth/Logout';
+// import asyncComponent from '../src/hoc/asyncComponent/asyncComponent';
 
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import * as actions from './store/actions/index';
+
+// for lazy loading set up function as below, then use function name as component prop in router
+// removed as it was throwing up errors about updating state in unmounted components
+// const asyncMapRender = asyncComponent(() => {
+//   return import('../src/containers/MyLitterPicker/MapRender');
+// });
+
+
 
 const App = (props) => {
    
@@ -17,7 +26,7 @@ const App = (props) => {
     props.onInitLocation();
     props.onTryAutoLogin();
 
-  }, [])
+  }, [props])
 
   let routes = (
     <>

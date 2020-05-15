@@ -1,13 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import * as actions from '../../store/actions/index';
 
 
-import LoginModal from '../../components/UserAccount/LoginModal';
-import Hamburger from '../../components/NavBar/Hamburger';
-import Sidedraw from '../../components/NavBar/Sidedraw';
+import LoginModal from '../../components/UserAccount/Login/LoginModal';
 import Logo from '../../components/NavBar/Logo';
 // import {validateAndSubmit} from '../../components/UI/Validation/LoginModal';
 
@@ -27,43 +24,36 @@ const DivWrapper = styled.div`
 
   top: 10%;
   left: 0;
-  background:  ${props => props.showSidedraw ? '#0060ac' : '#fcfdff'};
+  background:  #0060ac;
   transition: transform .5s ease-in-out;
 
   padding: 0px 0px;
-  z-index: 501;
+  z-index: 100;
   margin: 0px;
   box-sizing: border-box;
-
+  transition: all .5s ease-in-out;
+  transform:${props => props.close ? 'translateY(20%)' : 'translateY(0%)'};
 `;
 
-const NoLogoNav = styled.div`
-height: 10%;
-width: 100%;
-position: fixed;
-display: flex;
-justify-content:flex-end;
 
-top: 0;
-left: 0;
-background: ${props => props.isBlue ? '#0060ac': '#fcfdff'};
-  transition: transform .5s ease-in-out;
-
-border-top: 3px solid #ef7a3b;
-align-items: center; 
-padding: 0px 0px;
-z-index: 501;
-margin-bottom: 0px;
-box-sizing: border-box;
-`;
 
 const MainDisplay = styled.div`
-  transform:${props => !props.move ? 'translateY(-1%)' :(props.auth ? 'translateY(60%)' : 'translateY(30%)')};
-  transition: transform .5s ease-in-out;
-  background:  ${props => props.move ? '#0060ac' : '#fcfdff'};
+
+
+  background: #0060ac;
   width: 100%;
+  height: auto;
   box-sizing: inherit;
   padding: 0px 18px;
+
+
+`;
+
+const Title = styled.h1`
+  margin: 16px 0px 0px 0px;
+  color: white;
+  text-align: center;
+  font-size: 45px;
 
 `;
 
@@ -71,21 +61,23 @@ const MainDisplay = styled.div`
 const UserAccount = (props) =>{
 
 
+
+
   let redirectIfAuth;
   if(props.isAuth){
     redirectIfAuth = (<Redirect to="/dashboard"/>);
   }
 
+  
+
   return (
-    <DivWrapper showSidedraw={props.showSidedraw}>
-      <NoLogoNav isBlue={props.showSidedraw}>
-        <Hamburger isWhite={props.showSidedraw} isBlue={true}/>
-      </NoLogoNav>
-      <Sidedraw opacity='0'/>
+    <DivWrapper showSidedraw={props.showSidedraw} close={props.showSidedraw}>
+      
+
       <MainDisplay move={props.showSidedraw} auth={props.isAuth}>
-        <Logo fontSize={'60px'} style={{marginTop: '16px'}} isWhite={props.showSidedraw} paddingLeft={false}/>
+        <Title>login</Title>
       {redirectIfAuth}
-        <LoginModal/>
+        <LoginModal firebaseError={props.firebaseError}/>
       </MainDisplay>
      
     </DivWrapper>
@@ -96,6 +88,8 @@ const mapStateToProps = state => {
   return {
     showSidedraw: state.navReducer.showSidedraw,
     isAuth: state.authReducer.token !== null,
+    firebaseError: state.authReducer.error,
+
   }
 };
 

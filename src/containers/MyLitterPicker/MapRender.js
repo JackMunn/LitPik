@@ -3,7 +3,6 @@ import { Route, Redirect } from 'react-router-dom';
 
 import mapboxgl from 'mapbox-gl';
 import './site.css';
-import * as geojson from './spoofdata.json';
 import Footer from '../../components/MyLitterPicker/Footer';
 import SuccessModal from '../../components/MyLitterPicker/OnSuccess';
 import Backdrop from '../../components/UI/Backdrop';
@@ -27,8 +26,8 @@ const MapRender = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [newPostSuccess, setNewPostSuccess] = useState(false);
   const [lastRubbishType, setLastRubbishType] = useState(null);
-
-  const [serverToggle, setServerToggle] = useState('locs.json')
+  
+  const [serverToggle] = useState('locs.json')
 
   
 
@@ -168,7 +167,7 @@ if(newPostSuccess){
   successScreen = (
     <>
     <Backdrop show={true} opacity=".6" changed={toggleSuccessScreen}/>
-    <SuccessModal rubbishType={lastRubbishType} toggleSuccessScreen={toggleSuccessScreen}/>
+    <SuccessModal rubbishType={lastRubbishType} toggleSuccessScreen={toggleSuccessScreen} sessionTotal={props.sessionTotal}/>
     </>
   );
 }
@@ -185,7 +184,8 @@ if(!props.isAuthenticated){
         {authRedirect}
         {loadScreen}  
         {successScreen}    
-        <Route exact path="/map" component={()=> <Footer saveLitterLoc={saveLitterLoc}/>}/> 
+        <Route exact path="/map" component={()=> 
+        <Footer saveLitterLoc={saveLitterLoc} token={props.token}/>}/> 
 
         </div>  
 
@@ -202,6 +202,8 @@ const mapStateToProps = (state) => {
     token: state.authReducer.token,
     userId: state.authReducer.userId,
     isAuthenticated: state.authReducer.token !== null,
+    sessionTotal: state.mapReducer.sessionTotal
+
 
   };
 }

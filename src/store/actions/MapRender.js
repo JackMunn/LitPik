@@ -18,7 +18,6 @@ export const initUserLocation = () => {
 
 
       dispatch(setLocation(position.coords.longitude,position.coords.latitude));
-      console.log('[Action Store]');
     }
   }
 }

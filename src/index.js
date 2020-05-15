@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'; //wraps App components and allows Redux 
 import thunk from 'redux-thunk';
 import App from './App';
 import reducer from './store/reducers/index';
+import './index.css';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,6 +1,5 @@
-import { Field, reduxForm, SubmissionError} from 'redux-form';
-import { connect } from 'react-redux';
-import React from 'react';
+import { SubmissionError} from 'redux-form';
+
 import * as actions from '../../../store/actions/index';
 
 // async function submitToServer(data){
@@ -25,7 +24,6 @@ import * as actions from '../../../store/actions/index';
 export const validateAndSubmit =  ({email = '', password = ''},dispatch ) => {
   let error = {};
   let isError = false;
-  console.log('validate and submit', email,password)
 
   if(email.trim() === ''){
     error.email = 'required';

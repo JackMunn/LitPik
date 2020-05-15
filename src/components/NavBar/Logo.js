@@ -25,7 +25,12 @@ const Logo = styled.div`
 
 `;
 
-const logo = (props) => <Logo fontSize={props.fontSize} isWhite={props.isWhite} paddingLeft={props.paddingLeft}>litpik</Logo>;
+const logo = (props) => <Logo 
+  fontSize={props.fontSize} 
+  isWhite={props.isWhite} 
+  paddingLeft={props.paddingLeft}>
+    {props.placeholder}
+  </Logo>;
 
 
 export default logo;

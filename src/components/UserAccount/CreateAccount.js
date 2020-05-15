@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { Field, reduxForm, SubmissionError} from 'redux-form';
+import { Field, reduxForm} from 'redux-form';
 import {inputField} from '../UI/InputField';
 import * as actions from '../../store/actions/index';
-import SignUp from './SignUp';
 import {validateAndSubmit} from '../UI/Validation/CreateAccount';
 
 
@@ -74,11 +72,11 @@ let CreateAccountFn = (props) => {
   )
 }
 
-function submit(values, dispatch) {
-  //Can log the values to the console, but submitFormValues actionCreator does not appear to be dispatched.
-  console.log(values);
-  return dispatch(actions.auth(values));
-}
+// function submit(values, dispatch) {
+//   //Can log the values to the console, but submitFormValues actionCreator does not appear to be dispatched.
+//   console.log(values);
+//   return dispatch(actions.auth(values));
+// }
 
 
 
@@ -89,10 +87,5 @@ CreateAccountFn = reduxForm({
 
 })(CreateAccountFn)
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password) => dispatch(actions.auth(email,password)),
-  }
-}
 
-export default connect(null, mapDispatchToProps)(CreateAccountFn);
+export default CreateAccountFn;

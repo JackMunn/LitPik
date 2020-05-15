@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
-import * as navBarActions from '../../store/actions/index';
 
 const SidedrawIcon = styled.div`
 
@@ -38,10 +36,9 @@ const IconWrapper = styled.div`
 
 const Hamburger = (props) => {
   
-
   return(
     <>
-      <IconWrapper onClick={props.toggleSidedraw} borderOrange={props.showSidedraw} isBlue={props.isBlue} >
+      <IconWrapper onClick={props.toggleSidedraw} borderOrange={props.showSideDraw} isBlue={props.isBlue} >
         <SidedrawIcon isWhite={props.isWhite}/>
         <SidedrawIcon isWhite={props.isWhite}/>
         <SidedrawIcon isWhite={props.isWhite}/>
@@ -51,17 +48,7 @@ const Hamburger = (props) => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    showSidedraw: state.navReducer.showSidedraw,
-  }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleSidedraw : () => dispatch(navBarActions.toggleSidedraw())
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hamburger);
+export default Hamburger;
 
