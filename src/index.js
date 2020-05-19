@@ -4,7 +4,6 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import { createStore, applyMiddleware, compose} from 'redux';
 import { Provider } from 'react-redux'; //wraps App components and allows Redux state to be used throughout
-import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
 import App from './App';
