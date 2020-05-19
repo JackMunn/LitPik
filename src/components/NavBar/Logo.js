@@ -15,7 +15,7 @@ const Logo = styled.div`
   text-align: center;
   margin: 0 auto;
   padding: 0px;
-  padding-left: ${props => props.paddingLeft ? '10%': '0'};
+  padding-left: ${props => props.paddingLeft ? '10%' : '0'};
 
 
   

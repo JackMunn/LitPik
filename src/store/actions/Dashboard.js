@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes.js';
-import axios from 'axios';
 
 
 export const onCalculateDashboardStats = (cans, bottles) => {
@@ -12,31 +11,10 @@ export const onCalculateDashboardStats = (cans, bottles) => {
 }
 
 export const initCalcStats = (tokenProp, userId) => {
-  console.log('initCalcStats')
-  let tempCans = 0;
-  let tempBottles =0;
-  
-  let  token = tokenProp;
-  if(!tokenProp){
-    token = localStorage.getItem('Token');
+  return {
+    type: actionTypes.INIT_CALC_STATS,
+    tokenProp,
+    userId
   }
-
-  const queryParams = `auth=${token}&orderBy="userId"&equalTo="${userId}"`;
-
   
-
-  return dispatch => {
-    axios.get(`https://litterapp-21386.firebaseio.com/test.json?${queryParams}`).then(response => {
-      for(let key in response.data){
-
-        if(response.data[key].rubbishType === 'can') {
-          tempCans++; 
-        } 
-        if(response.data[key].rubbishType === 'bottle') {
-          tempBottles++;
-        }
-      }
-      dispatch(onCalculateDashboardStats(tempCans,tempBottles));  
-    })
-  }
 }

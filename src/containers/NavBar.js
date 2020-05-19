@@ -8,7 +8,6 @@ import UserAccount from '../containers/UserAccount/UserAccount';
 import * as navBarActions from '../store/actions/index';
 
 const Bar = styled.div`
-  height: 10%;
   width: 100%;
   position: fixed;
   display: flex;
@@ -27,14 +26,7 @@ const Bar = styled.div`
 
 `;
 
-const BelowTheBar = styled.div`
-  top: 10%;
-  height: 90%;
-  position: fixed;
-  background: #0060ac;
-  z-index: 0;
-  box-sizing: border-box;
-`;
+
 /* 
 
 font-family: 'Hind', sans-serif;
@@ -55,7 +47,7 @@ const NavBar = (props) => {
       <>
       <Bar>
        {/* <p>count: {props.totalRubbishCount}</p> */}
-       <Logo fontSize={'32px'} isWhite={true} paddingLeft={true} placeholder="litpik"/>
+       <Logo fontSize={'32px'} isWhite={true} paddingLeft={64} placeholder="litpik"/>
         <Hamburger isWhite={true} isBlue={false} showSideDraw={props.open} toggleSidedraw={props.toggleSidedraw}/>
 
       </Bar>

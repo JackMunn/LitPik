@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import * as actions from '../../store/actions/index';
 
 
 import LoginModal from '../../components/UserAccount/Login/LoginModal';
@@ -71,7 +72,7 @@ const UserAccount = (props) =>{
   
 
   return (
-    <DivWrapper showSidedraw={props.showSidedraw} close={props.showSidedraw}>
+    <DivWrapper showSidedraw={props.showSidedraw} close={props.showSidedraw} onClick={props.closeSidedraw}>
       
 
       <MainDisplay move={props.showSidedraw} auth={props.isAuth}>
@@ -93,6 +94,11 @@ const mapStateToProps = state => {
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    closeSidedraw: () => dispatch(actions.closeSidedraw()),
+  }
+}
 
 
-export default connect(mapStateToProps)(UserAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(UserAccount);

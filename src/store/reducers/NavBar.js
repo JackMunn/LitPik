@@ -11,6 +11,11 @@ const navBarReducer = (state = initialState, action) => {
         ...state,
         showSidedraw: !state.showSidedraw,
       }
+    case actionTypes.CLOSE_SIDEDRAW:
+      return {
+        ...state,
+        showSidedraw: false,
+      }
       default: {
         return {
          ...state

@@ -3,7 +3,7 @@ import RenderCountTotals from '../../components/Dashboard/RenderCountTotals';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import * as dashboardActions from '../../store/actions/index'
+import * as actions from '../../store/actions/index'
 
 const DivWrapper = styled.div`
   top: 10%;
@@ -29,7 +29,7 @@ const Dashboard = (props) => {
   }
   
     return (
-    <DivWrapper shift={props.showSidedraw}>
+    <DivWrapper shift={props.showSidedraw} onClick={props.closeSidedraw}>
       <h1>Dashboard</h1>
     <RenderCountTotals isLoading={dashboardLoading} cans={cans} bottles={bottles}/>
     </DivWrapper>
@@ -56,7 +56,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCalculateDashboardStats : (token, userId) => dispatch(dashboardActions.initCalcStats(token, userId)),
+    onCalculateDashboardStats : (token, userId) => dispatch(actions.initCalcStats(token, userId)),
+    closeSidedraw: () => dispatch(actions.closeSidedraw())
   }
 }
 

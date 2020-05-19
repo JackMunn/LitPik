@@ -1,17 +1,25 @@
 export { 
   initUserLocation,
   onSessionAdd,
-  
+  setLocation
  } from './MapRender';
 export {
-  initCalcStats} from './Dashboard';
+  initCalcStats,
+  onCalculateDashboardStats
+} from './Dashboard';
 
   export {
-    toggleSidedraw
+    toggleSidedraw,
+    closeSidedraw
   } from './NavBar'
 
 export {
   auth,
   logout,
-  authCheckState
+  authCheckState,
+  logoutSucceed,
+  authStart,
+  authSuccess,
+  authFail, 
+  checkAuthTimeout
 } from './auth'
