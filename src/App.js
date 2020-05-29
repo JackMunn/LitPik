@@ -5,6 +5,7 @@ import Dashboard from '../src/containers/Dashboard/Dashboard';
 import UserAccount from '../src/containers/UserAccount/UserAccount';
 import CreateAccount from '../src/containers/UserAccount/CreateAccount';
 import Logout from '../src/containers/Auth/Logout';
+import LandingPage from '../src/containers/LandingPage/LandingPage'
 // import asyncComponent from '../src/hoc/asyncComponent/asyncComponent';
 
 import { Route, Redirect, withRouter } from 'react-router-dom';
@@ -32,6 +33,7 @@ const App = (props) => {
     <>
     <Route path="/login" component={UserAccount}/>
     <Route path="/" component={NavBar}/>
+    <Route exact path="/" component={LandingPage}/>
     <Route path="/createaccount" component={CreateAccount}/>
     <Route path="/dashboard" component={Dashboard}/>
     <Route path="/map" component={MapRender}/>

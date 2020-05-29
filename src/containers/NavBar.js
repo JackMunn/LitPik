@@ -9,6 +9,7 @@ import * as navBarActions from '../store/actions/index';
 
 const Bar = styled.div`
   width: 100%;
+  height: 10%;
   position: fixed;
   display: flex;
   
@@ -47,7 +48,7 @@ const NavBar = (props) => {
       <>
       <Bar>
        {/* <p>count: {props.totalRubbishCount}</p> */}
-       <Logo fontSize={'32px'} isWhite={true} paddingLeft={64} placeholder="litpik"/>
+       <Logo fontSize={'40px'} isWhite={true} placeholder="litpik"/>
         <Hamburger isWhite={true} isBlue={false} showSideDraw={props.open} toggleSidedraw={props.toggleSidedraw}/>
 
       </Bar>

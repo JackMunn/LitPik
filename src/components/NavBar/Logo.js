@@ -8,14 +8,14 @@ const Logo = styled.div`
   color: ${props => props.isWhite ? 'white' : '#0060ac'}  ;
   width: 80%;
   
-
+  vertical-display: middle; 
   box-sizing: border-box; 
   font-size: ${props => props.fontSize};
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   margin: 0 auto;
   padding: 0px;
-  padding-left: ${props => props.paddingLeft ? '10%' : '0'};
+  padding-left: 5%;
 
 
   
