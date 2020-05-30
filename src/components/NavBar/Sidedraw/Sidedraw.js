@@ -82,7 +82,7 @@ export const Sidedraw = (props) => {
 
   return (
     <>
-      <Backdrop show={props.open} changed={props.toggleSidedraw} opacity={props.opacity ? props.opacity : ".4"}/>
+      <Backdrop show={props.open} changed={props.toggleSidedraw} opacity={'0'}/>
       <SidedrawPanel show={props.open} auth={props.isAuth}>
         {props.isAuth ? null :
           <>

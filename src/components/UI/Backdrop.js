@@ -9,7 +9,7 @@ const BackdropDiv = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 75;
+  z-index: 100;
   box-sizing: border-box;
 
 `;
@@ -17,7 +17,7 @@ const BackdropDiv = styled.div`
 const backdrop = (props) => {
 
   
-  return props.showSidedraw || props.show ? <BackdropDiv onClick={props.changed} opacity={'0'}/> : null;
+  return props.showSidedraw || props.show ? <BackdropDiv onClick={props.changed} opacity={props.opacity}/> : null;
 };
 
 export default backdrop; 

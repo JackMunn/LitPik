@@ -15,9 +15,11 @@ const DivWrapper = styled.div`
   transition: all .5s ease-in-out;
   transform:${props => props.shift ? 'translateY(35%)' : 'translateY(0%)'};
   color: white;
+  overflow: scroll;
 `;
 
 const ColumnFlexBox = styled.div`
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     height: 100%;
