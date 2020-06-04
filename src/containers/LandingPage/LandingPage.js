@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Panel }from '../../components/UI/OrangeGreyPanel'
 import bluebag from '../../assets/blue-bag.png'
 
 
@@ -31,25 +32,11 @@ const ColumnFlexBox = styled.div`
 
 `;
 
-const LoginPanel = styled.div`
-    width: 90%;
-    padding: 30px;
-    height: 200px;
-    margin: 5%;
-    border-top: 3px solid #ef7a3b;
-    box-sizing: border-box;
-    background: white;
-    
-
-
-`;
 
 const LandingPage = (props) => {
     return <DivWrapper shift={props.showSidedraw}>
             <ColumnFlexBox>
-                <LoginPanel>Howdy, welcome to litpik - the litter pickin' app built to clean up our communities.</LoginPanel>
-                <LoginPanel></LoginPanel>
-                <LoginPanel></LoginPanel>
+                <Panel title="Welcome to litpik!">Howdy</Panel>
 
             </ColumnFlexBox>
         </DivWrapper>

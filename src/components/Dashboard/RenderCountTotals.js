@@ -4,24 +4,7 @@ import styled from 'styled-components';
 import canImg from '../../assets/can.png';
 import bottleImg from '../../assets/bottle.png';
 import PopupModal from './PopupModal';
-
-const Panel = styled.div`
-    width: 90%;
-    height: 200px;
-    margin: 5%;
-    border-left: 3px solid #ef7a3b;
-    box-sizing: border-box;
-    background: #fafaff;
-
-    display: flex;
-    align-items: flex-start;
-    height: auto;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-
-`;
+import { Panel } from '../UI/OrangeGreyPanel'
 
 const PanelDiv = styled.div`
   width: auto;
@@ -30,12 +13,6 @@ const PanelDiv = styled.div`
   font-size: 60px;
 `;
 
-const AddPanel = styled.div`
-  width: auto;
-  text-align: center;
-  padding: 10px;
-  font-size: 60px;
-`;
 
 const Icons = styled.div`
   background-image: url(${props => props.iconType === "can" ? canImg : bottleImg});
@@ -52,7 +29,7 @@ const RenderCountTotals = (props) => {
   const [showCans, setShowCans] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
-  const addPanelHandler = () => {
+  const togglePopup = () => {
     // setShowBottles(true);
     // setShowCans(true);
     setShowPopup(!showPopup);
@@ -60,13 +37,11 @@ const RenderCountTotals = (props) => {
 
   const toggleCans = () => {
     setShowCans(!showCans);
-    setShowPopup(false);
 
   }
 
   const toggleBottles = () => {
     setShowBottles(!showBottles);
-    setShowPopup(false);
 
   }
 
@@ -110,9 +85,9 @@ const RenderCountTotals = (props) => {
       <>
       {showBottles ? displayBottles : null}
       {showCans ? displayCans : null}
-      <PopupModal openPopup={showPopup} toggleCans={toggleCans} toggleBottles={toggleBottles}/>
+      <PopupModal openPopup={showPopup} toggleCans={toggleCans} toggleBottles={toggleBottles} toClose={togglePopup} showCans={showCans} showBottles={showBottles}/>
 
-      <Panel onClick={addPanelHandler}>
+      <Panel onClick={togglePopup}>
           <span style={{color:'#ef7a3b'}}>+</span>
       </Panel>
       </>
