@@ -1,12 +1,14 @@
 import React from 'react';
-import RenderCountTotals from '../../components/Dashboard/RenderCountTotals';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as actions from '../../store/actions/index'
 
+import RenderCountTotals from '../../components/Dashboard/RenderCountTotals';
+import PageHeader from '../../components/UI/PageHeader';
+
+
 const DivWrapper = styled.div`
-  font-family: 'Hind', sans-serif;
   top: 10%;
   left: 0;
   width: 100%;
@@ -25,7 +27,6 @@ const ColumnFlexBox = styled.div`
     height: 100%;
     color: black;
     text-align: center;
-    box-sizing: border-box;
 
 `;
 
@@ -42,7 +43,7 @@ const Dashboard = (props) => {
     return (
     <DivWrapper shift={props.showSidedraw} onClick={props.closeSidedraw}>
       <ColumnFlexBox>
-        <h1 style={{color:'white', fontSize:'60px', margin: '0px'}}>Dashboard</h1>
+        <PageHeader>Dashboard</PageHeader>
         <RenderCountTotals isLoading={dashboardLoading} cans={cans} bottles={bottles}/>
       </ColumnFlexBox>
     </DivWrapper>

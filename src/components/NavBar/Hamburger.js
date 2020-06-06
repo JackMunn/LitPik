@@ -21,7 +21,7 @@ const IconWrapper = styled.div`
   display: block;
   position: relative;
   float:right;
-  border: ${props => props.borderOrange ? '2px solid #ef7a3b' :  (props.isBlue ?'2px solid #0060ac' : '2px solid white')};
+  border: ${props => props.borderOrange ? `2px solid ${props.theme.color.secondary}` :  (props.isBlue ?`2px solid ${props.theme.color.primary}` : `2px solid ${props.theme.color.white}`)};
   
   border-radius: 3px;
   user-select: none;

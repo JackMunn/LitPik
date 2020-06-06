@@ -10,9 +10,6 @@ import * as actions from '../../store/actions/index';
 
 const DivWrapper = styled.div`
   margin: 0px;
-    font-family: 'Hind', sans-serif;
-
-
   height: 90%;
   width: 100%;
   position: absolute;
@@ -22,14 +19,12 @@ const DivWrapper = styled.div`
 
   top: 10%;
   left: 0;
-  background: '#fcfdff';
   transform:${props => !props.move ? 'translateY(-1%)' :'translateY(20%)'};
   transition: transform .5s ease-in-out;
 
   padding: 0px 0px;
   z-index: 0;
   margin: 0px;
-  box-sizing: border-box;
 
 `;
 

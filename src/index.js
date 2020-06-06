@@ -5,11 +5,13 @@ import {BrowserRouter} from 'react-router-dom';
 import { createStore, applyMiddleware, compose} from 'redux';
 import { Provider } from 'react-redux'; //wraps App components and allows Redux state to be used throughout
 import createSagaMiddleware from 'redux-saga';
+import { ThemeProvider} from 'styled-components';
 
 import App from './App';
 import reducer from './store/reducers/index';
-import './index.css';
 import { watchAuth, watchMapRender, watchDashboard} from '../src/store/sagas/index';
+import {GlobalStyles} from './theme/GlobalStyles';
+import { theme } from './theme/Theme';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -32,7 +34,10 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+         <GlobalStyles/>
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>

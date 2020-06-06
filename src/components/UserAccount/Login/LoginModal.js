@@ -4,7 +4,6 @@ import { Field, reduxForm} from 'redux-form';
 
 import {inputField} from '../../UI/InputField';
 import Loader from '../../UI/Loader';
-import * as actions from '../../../store/actions/index';
 import SignUp from '../SignUp';
 import {validateAndSubmit} from '../../UI/Validation/LoginModal';
 
@@ -23,7 +22,6 @@ const LoginPanel = styled.div`
   width: 100%;
   padding: 8px;
   padding-bottom: 0px;
-  box-sizing: border-box;
   border-radius:16px;
   margin: 0 auto;
 `;
@@ -31,7 +29,6 @@ LoginPanel.displayName = 'LoginPanel';
 
 
 const SubmitButton = styled.button`
-  font-family: 'Hind', sans-serif;
   background: #ef7a3b;
   border-radius: 18px;
   width: 100%;
@@ -43,9 +40,7 @@ const SubmitButton = styled.button`
   font-weight: bold;
   font-size: 20px;
   color: #F6F7FB;
-
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); !important
--webkit-tap-highlight-color: transparent;  
+  
 
 
 `;

@@ -19,7 +19,6 @@ const LoginPanel = styled.div`
   width: 100%;
   padding: 8px;
   padding-bottom: 0px;
-  box-sizing: border-box;
   border-radius:16px;
   margin: 0 auto;
 `;
@@ -39,13 +38,10 @@ const SubmitButton = styled.button`
   font-size: 20px;
   color: #F6F7FB;
 
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); !important
--webkit-tap-highlight-color: transparent;  
 
 `;
 
 const Title = styled.h1`
-    font-family: 'Hind', sans-serif;
     color: #0060ac;
 
 `;

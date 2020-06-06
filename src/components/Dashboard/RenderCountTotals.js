@@ -10,7 +10,6 @@ const PanelDiv = styled.div`
   width: auto;
   text-align: center;
   padding: 10px;
-  font-size: 60px;
 `;
 
 

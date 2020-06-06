@@ -13,7 +13,6 @@ import Logo from '../../components/NavBar/Logo';
 
 const DivWrapper = styled.div`
   margin: 0px;
-    font-family: 'Hind', sans-serif;
 
 
   height: 90%;
@@ -25,13 +24,11 @@ const DivWrapper = styled.div`
 
   top: 10%;
   left: 0;
-  background:  #0060ac;
   transition: transform .5s ease-in-out;
 
   padding: 0px 0px;
   z-index: 100;
   margin: 0px;
-  box-sizing: border-box;
   transition: all .5s ease-in-out;
   transform:${props => props.close ? 'translateY(20%)' : 'translateY(0%)'};
 `;
@@ -41,10 +38,8 @@ const DivWrapper = styled.div`
 const MainDisplay = styled.div`
 
 
-  background: #0060ac;
   width: 100%;
   height: auto;
-  box-sizing: inherit;
   padding: 0px 18px;
 
 

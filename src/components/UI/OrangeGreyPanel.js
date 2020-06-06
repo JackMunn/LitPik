@@ -5,9 +5,8 @@ const PanelDiv = styled.div`
     width: 90%;
     height: 200px;
     margin: 2.5% 5%;
-    border-left: 3px solid #ef7a3b;
-    box-sizing: border-box;
-    background: #fafaff;
+    border-left: 3px solid ${props => props.theme.color.secondary};
+    background: ${props => props.theme.color.white};
 
     display: flex;
     align-items: flex-start;
@@ -15,11 +14,16 @@ const PanelDiv = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    font-size: 60px;
+    font-size: ${props => props.theme.fontSize.extraLarge};
+
+    /* media query below is just an example of how it'd work with themes */
+    @media ${props => props.theme.mediaQueries.mobile}{
+        color: red;
+    }
 `;
 
 const Title = styled.h1`
-    font-size: 30px;
+    font-size: ${props => props.theme.fontSize.medium}
 
 `;
 

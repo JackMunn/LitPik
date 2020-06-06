@@ -9,13 +9,11 @@ import { NavLink } from 'react-router-dom'
 
 
 const SubmitButton = styled.button`
-  font-family: 'Hind', sans-serif;
   background: #75cff0;
   border-radius: 18px;
   width: 100%;
   padding: 8px 35px;
   margin: 16px 0px ;
-  margin-top: 16pxpx;
   display: block;
   border: none;
   font-weight: bold;

@@ -2,15 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Logo = styled.div`
-  font-family: 'Hind', sans-serif;
   text-decoration: underline;
-  text-decoration-color: #ef7a3b;
-  color: ${props => props.isWhite ? 'white' : '#0060ac'}  ;
+  text-decoration-color: ${props => props.theme.color.secondary};
+  color: ${props => props.isWhite ? props.theme.color.white : '#0060ac'}  ;
   width: 80%;
-  
-  vertical-display: middle; 
-  box-sizing: border-box; 
-  font-size: ${props => props.fontSize};
+  font-size: ${props => props.theme.fontSize.large};
   font-weight: bold;
   text-align: left;
   margin: 0 auto;
