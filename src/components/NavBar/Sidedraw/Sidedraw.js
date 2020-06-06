@@ -7,7 +7,7 @@ const SidedrawPanel = styled.div`
 
   position: fixed;
   width: 100%;
-  height: auto;
+  height: 90%;
   left: 0;
   top: 10%;
   z-index: 100; 
@@ -17,11 +17,11 @@ const SidedrawPanel = styled.div`
   transition: transform .5s ease-out;
   box-sizing: border-box;
 
-  dislay:block;
+  display:block;
   outline: none;
   user-select: none;
 
-  transform: ${props => props.show ? 'translateY(-5%)' : 'translateY(-150%)'};
+  transform: ${props => props.show ? 'translateY(0%)' : 'translateY(-200%)'};
 
 
 

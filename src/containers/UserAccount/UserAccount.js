@@ -14,23 +14,22 @@ import Logo from '../../components/NavBar/Logo';
 const DivWrapper = styled.div`
   margin: 0px;
 
-
   height: 90%;
   width: 100%;
-  position: absolute;
   display: flex;
   flex-direction: column; 
   align-items: center;
 
-  top: 10%;
+  top: 20%;
   left: 0;
   transition: transform .5s ease-in-out;
 
   padding: 0px 0px;
   z-index: 100;
   margin: 0px;
-  transition: all .5s ease-in-out;
-  transform:${props => props.close ? 'translateY(20%)' : 'translateY(0%)'};
+  transition: all .3s ease-in-out;
+  transform:${props => props.close ? 'translateY(200%)' : 'translateY(0%)'};
+  overflow: scroll;
 `;
 
 
@@ -46,7 +45,7 @@ const MainDisplay = styled.div`
 `;
 
 const Title = styled.h1`
-  margin: 16px 0px 0px 0px;
+  margin: 32px 0px 0px 0px;
   color: white;
   text-align: center;
   font-size: 45px;

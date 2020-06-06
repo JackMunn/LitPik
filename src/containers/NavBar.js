@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import Hamburger from '../components/NavBar/Hamburger'
 import Sidedraw from '../components/NavBar/Sidedraw/Sidedraw';
 import Logo from '../components/NavBar/Logo';
-import UserAccount from '../containers/UserAccount/UserAccount';
 import * as navBarActions from '../store/actions/index';
 
 const Bar = styled.div`
   width: 100%;
-  height: 10%;
+  height: 50px;
   position: fixed;
   display: flex;
   
@@ -21,7 +20,6 @@ const Bar = styled.div`
   padding: 0px 0px;
   z-index: 500;
   margin: 0px;
-  box-sizing: border-box;
   justify-content:flex-end;
 
 

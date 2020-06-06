@@ -13,6 +13,8 @@ const Button = styled.button`
     text-decoration: none;
     border-style: none;
     user-select: none;
+    &:focus {outline:0;}
+
 
 
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0); 

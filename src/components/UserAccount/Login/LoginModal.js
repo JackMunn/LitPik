@@ -29,7 +29,7 @@ LoginPanel.displayName = 'LoginPanel';
 
 
 const SubmitButton = styled.button`
-  background: #ef7a3b;
+  background: ${props => props.theme.color.secondary};
   border-radius: 18px;
   width: 100%;
   padding: 8px 30px;
@@ -38,8 +38,10 @@ const SubmitButton = styled.button`
   display: block;
   border: none;
   font-weight: bold;
-  font-size: 20px;
-  color: #F6F7FB;
+  font-size: ${props=> props.theme.fontSize.medium};
+  color: ${props => props.theme.color.white};
+  &:focus {outline:0;}
+
   
 
 

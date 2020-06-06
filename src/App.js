@@ -31,8 +31,8 @@ const App = (props) => {
 
   let routes = (
     <>
+     <Route path="/" component={NavBar}/>
     <Route path="/login" component={UserAccount}/>
-    <Route path="/" component={NavBar}/>
     <Route exact path="/" component={LandingPage}/>
     <Route path="/createaccount" component={CreateAccount}/>
     <Route path="/dashboard" component={Dashboard}/>

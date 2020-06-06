@@ -15,7 +15,7 @@ const DivWrapper = styled.div`
   height: 90%;
   position: absolute;
   transition: all .5s ease-in-out;
-  transform:${props => props.shift ? 'translateY(40%)' : 'translateY(0%)'};
+  transform:${props => props.shift ? 'translateY(100%)' : 'translateY(0%)'};
   color: white;
   overflow: scroll;
 `;
