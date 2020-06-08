@@ -1,34 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import CreateAccountModal from '../../components/UserAccount/CreateAccount';
 import * as actions from '../../store/actions/index';
-
-
-
-const DivWrapper = styled.div`
-  margin: 0px;
-  height: 90%;
-  width: 100%;
-  position: absolute;
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-
-  top: 10%;
-  left: 0;
-  transform:${props => !props.move ? 'translateY(-1%)' :'translateY(20%)'};
-  transition: transform .5s ease-in-out;
-
-  padding: 0px 0px;
-  z-index: 0;
-  margin: 0px;
-
-`;
-
-
+import CreateAccountModal from '../../components/UserAccount/CreateAccount';
+import DivWrapper from '../../components/UI/Layout/DivWrapper';
 
 
 const CreateAccount = (props) =>{
@@ -39,7 +15,7 @@ const CreateAccount = (props) =>{
   }
 
   return (
-      <DivWrapper move={props.showSidedraw}>
+      <DivWrapper showSidedraw={props.showSidedraw} close={props.showSidedraw} onClick={props.closeSidedraw}>
         {redirectIfAuth}
      <CreateAccountModal onAuth={props.onAuth}/>
      </DivWrapper>
@@ -53,7 +29,10 @@ const mapStateToProps = state => {
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    closeSidedraw: () => dispatch(actions.closeSidedraw()),
+  }
+}
 
-
-
-export default connect(mapStateToProps)(CreateAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);

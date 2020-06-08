@@ -11,11 +11,10 @@ const SidedrawPanel = styled.div`
   left: 0;
   top: 10%;
   z-index: 100; 
-  background: #0060ac; 
+  background: ${props => props.theme.color.primary}; 
   border: 0px solid #0060ac;
   padding: 0px 16px;
   transition: transform .5s ease-out;
-  box-sizing: border-box;
 
   display:block;
   outline: none;

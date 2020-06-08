@@ -6,6 +6,7 @@ import {inputField} from '../../UI/InputField';
 import Loader from '../../UI/Loader';
 import SignUp from '../SignUp';
 import {validateAndSubmit} from '../../UI/Validation/LoginModal';
+import ErrorBox from '../../UI/Layout/ErrorBox';
 
 
 
@@ -15,11 +16,11 @@ import {validateAndSubmit} from '../../UI/Validation/LoginModal';
 // off white F6F7FB
 // orange ef7a3b
 const LoginPanel = styled.div`
-  display: flex;
+  display: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   padding: 8px;
   padding-bottom: 0px;
   border-radius:16px;
@@ -30,8 +31,8 @@ LoginPanel.displayName = 'LoginPanel';
 
 const SubmitButton = styled.button`
   background: ${props => props.theme.color.secondary};
-  border-radius: 18px;
   width: 100%;
+  border-radius: 9px;
   padding: 8px 30px;
   margin: 16px 0px ;
   margin-bottom: 16px;
@@ -63,6 +64,10 @@ let LoginModalFn = (props) => {
   let errorMessage;
   if(props.firebaseError){
     errorMessage = props.firebaseError.message;
+
+    if (errorMessage === 'EMAIL_NOT_FOUND'){
+      errorMessage = <ErrorBox>Ergh,nope. Details aren't quite right.</ErrorBox>
+    }
   }
 
   return (
@@ -73,10 +78,12 @@ let LoginModalFn = (props) => {
         {loader}
         {errorMessage}
       <SubmitButton type="submit">login</SubmitButton>
-    </form>
 
-    <hr style={{borderTop: '.5px solid #dcdfe6', width: '60%', background: '#dcdfe6'}}/>
+    </form>
+    <hr style={{borderTop: '.5px solid #dcdfe6', width: '60%', background: '#dcdfe6', margin:'0 auto'}}/>
     <SignUp/>
+
+  
   </LoginPanel>
   )
 }

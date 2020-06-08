@@ -9,16 +9,17 @@ import { NavLink } from 'react-router-dom'
 
 
 const SubmitButton = styled.button`
-  background: #75cff0;
-  border-radius: 18px;
+  background: ${props =>props.theme.color.primaryLight};
+  border-radius: 9px;
   width: 100%;
-  padding: 8px 35px;
+  padding: 8px 30px;
   margin: 16px 0px ;
   display: block;
   border: none;
   font-weight: bold;
-  font-size: 20px;
-  color: white;
+  font-size: ${props => props.theme.fontSize.medium};
+  color: ${props => props.theme.color.white};
+  &:focus {outline:0;}
 `;
 
 

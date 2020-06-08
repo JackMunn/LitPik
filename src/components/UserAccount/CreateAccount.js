@@ -2,31 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { Field, reduxForm} from 'redux-form';
 import {inputField} from '../UI/InputField';
-import * as actions from '../../store/actions/index';
 import {validateAndSubmit} from '../UI/Validation/CreateAccount';
-
+import DivWrapper from '../../components/UI/Layout/DivWrapper';
 
 
 
 // blue 0060ac
 // off white F6F7FB
 // orange ef7a3b
-const LoginPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 8px;
-  padding-bottom: 0px;
-  border-radius:16px;
-  margin: 0 auto;
-`;
+
 
 
 const SubmitButton = styled.button`
   background: ${props => props.theme.color.secondary};
-  border-radius: 18px;
+  border-radius: 9px;
   width: 100%;
   padding: 8px 30px;
   margin: 16px 0px ;
@@ -43,7 +32,7 @@ const SubmitButton = styled.button`
 `;
 
 const Title = styled.h1`
-    color: #0060ac;
+    color: ${({theme}) => theme.color.white};
 
 `;
 
@@ -56,7 +45,7 @@ let CreateAccountFn = (props) => {
   return (
 
 
-  <LoginPanel>  
+  <DivWrapper>  
     <Title>Create Account</Title>
     <form onSubmit={handleSubmit(validateAndSubmit)}>
       <Field name="email" component={inputField} type="email" placeholder="email address" />
@@ -65,7 +54,7 @@ let CreateAccountFn = (props) => {
       <SubmitButton type="submit">create account</SubmitButton>
     </form>
   
-  </LoginPanel>
+  </DivWrapper>
   )
 }
 

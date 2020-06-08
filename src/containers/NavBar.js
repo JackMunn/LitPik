@@ -14,8 +14,7 @@ const Bar = styled.div`
   
   top: 0;
   left: 0;
-  background: #0060ac;
-  border-top: 3px solid #ef7a3b;
+  border-top: 3px solid ${props => props.theme.color.secondary};
   align-items: center; 
   padding: 0px 0px;
   z-index: 500;
@@ -46,7 +45,7 @@ const NavBar = (props) => {
       <>
       <Bar>
        {/* <p>count: {props.totalRubbishCount}</p> */}
-       <Logo fontSize={'40px'} isWhite={true} placeholder="litpik"/>
+       <Logo isWhite={true} placeholder="litpik"/>
         <Hamburger isWhite={true} isBlue={false} showSideDraw={props.open} toggleSidedraw={props.toggleSidedraw}/>
 
       </Bar>

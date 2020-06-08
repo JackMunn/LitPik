@@ -1,54 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
 import * as actions from '../../store/actions/index';
-
-
+import DivWrapper from '../../components/UI/Layout/DivWrapper';
 import LoginModal from '../../components/UserAccount/Login/LoginModal';
-import Logo from '../../components/NavBar/Logo';
 // import {validateAndSubmit} from '../../components/UI/Validation/LoginModal';
 
 
 
-const DivWrapper = styled.div`
-  margin: 0px;
 
-  height: 90%;
-  width: 100%;
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-
-  top: 20%;
-  left: 0;
-  transition: transform .5s ease-in-out;
-
-  padding: 0px 0px;
-  z-index: 100;
-  margin: 0px;
-  transition: all .3s ease-in-out;
-  transform:${props => props.close ? 'translateY(200%)' : 'translateY(0%)'};
-  overflow: scroll;
-`;
 
 
 
 const MainDisplay = styled.div`
-
-
   width: 100%;
   height: auto;
   padding: 0px 18px;
-
-
 `;
 
 const Title = styled.h1`
   margin: 32px 0px 0px 0px;
   color: white;
   text-align: center;
-  font-size: 45px;
+  font-size:${props => props.theme.fontSize.large};
 
 `;
 
